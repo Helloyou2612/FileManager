@@ -1,0 +1,1271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SSI.DMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AgencyType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="FK_DocumentTypeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="CreatedSource" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedByUser" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedByUser" Type="nvarchar" MaxLength="50" />
+          <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="DepartmentId" Type="int" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserType" Type="int" />
+          <Property Name="CreatedSource" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedByUser" Type="nvarchar(max)" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="UpdateByUser" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Definition">
+          <Key>
+            <PropertyRef Name="DefineID" />
+          </Key>
+          <Property Name="DefineID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Value" Type="int" />
+          <Property Name="DefineType" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="RoleName" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
+          <Property Name="RoleID" Type="nvarchar" MaxLength="128" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedByUser" Type="nvarchar" MaxLength="128" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedByUser" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="DepartmentPermission">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentID" Type="int" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="250" />
+          <Property Name="ObjectID" Type="int" Nullable="false" />
+          <Property Name="ObjectName" Type="nvarchar" MaxLength="300" />
+          <Property Name="ObjectTypeCode" Type="varchar" MaxLength="50" />
+          <Property Name="ObjectPath" Type="varchar(max)" />
+          <Property Name="PermissionCode" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Dispatch">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_FileDocumentID" Type="int" />
+          <Property Name="ReceiveDate" Type="datetime" />
+          <Property Name="ToAgency" Type="int" />
+          <Property Name="AnswerAgency" Type="int" />
+          <Property Name="AnswerDate" Type="datetime" />
+          <Property Name="Reason" Type="int" />
+          <Property Name="ReasonDiff" Type="nvarchar" MaxLength="500" />
+          <Property Name="Status" Type="int" />
+          <Property Name="SSISigner" Type="nvarchar" MaxLength="50" />
+          <Property Name="AnswerForDispatchID" Type="int" />
+          <Property Name="ReceiveAgency" Type="int" />
+          <Property Name="SendDate" Type="datetime" />
+          <Property Name="SendMethod" Type="int" />
+          <Property Name="ReceiveAgencyDiff" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="DispatchAgency">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_FileDocumentID" Type="int" Nullable="false" />
+          <Property Name="Agency" Type="int" />
+          <Property Name="Type" Type="int" />
+        </EntityType>
+        <EntityType Name="DMS_Transaction">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ObjectId" Type="nvarchar" MaxLength="128" />
+          <Property Name="ObjectName" Type="nvarchar" MaxLength="250" />
+          <Property Name="ObjectType" Type="varchar" MaxLength="50" />
+          <Property Name="Action" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="LocalIp" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserIp" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DocumentReplaced">
+          <Key>
+            <PropertyRef Name="ReplacedByID" />
+            <PropertyRef Name="ReplacedID" />
+            <PropertyRef Name="ReplaceType" />
+          </Key>
+          <Property Name="ReplacedByID" Type="int" Nullable="false" />
+          <Property Name="ReplacedID" Type="int" Nullable="false" />
+          <Property Name="ReplaceType" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DocumentType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="ParentID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FileDocument">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileNo" Type="nvarchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Extension" Type="nvarchar" MaxLength="50" />
+          <Property Name="MimeType" Type="nvarchar" MaxLength="250" />
+          <Property Name="Title" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="FileData" Type="varbinary(max)" />
+          <Property Name="FileSize" Type="int" Nullable="false" />
+          <Property Name="Path" Type="varchar(max)" />
+          <Property Name="ParentID" Type="int" />
+          <Property Name="IsFolder" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsPublic" Type="bit" Nullable="false" />
+          <Property Name="IsReplace" Type="bit" Nullable="false" />
+          <Property Name="IsDispatch" Type="bit" Nullable="false" />
+          <Property Name="Department" Type="int" Nullable="false" />
+          <Property Name="PromulgatedDate" Type="date" />
+          <Property Name="DocumentTypeCategory" Type="int" />
+          <Property Name="DocumentTypeCategoryDiff" Type="nvarchar" MaxLength="250" />
+          <Property Name="DocumentType" Type="int" />
+          <Property Name="DocumentTypeDiff" Type="nvarchar" MaxLength="250" />
+          <Property Name="AgencyType" Type="int" />
+          <Property Name="AgencyTypeDiff" Type="nvarchar" MaxLength="250" />
+          <Property Name="EffectiveFrom" Type="date" />
+          <Property Name="EffectiveTo" Type="date" />
+          <Property Name="CreatedByUser" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedByUser" Type="varchar" MaxLength="50" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="LastWriteTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="FileDocumentPermissions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentId_PK" Type="int" Nullable="false" />
+          <Property Name="FileDocumentId_PK" Type="int" Nullable="false" />
+          <Property Name="Rename" Type="bit" Nullable="false" />
+          <Property Name="Move" Type="bit" Nullable="false" />
+          <Property Name="Copy" Type="bit" Nullable="false" />
+          <Property Name="Delete" Type="bit" Nullable="false" />
+          <Property Name="Download" Type="bit" Nullable="false" />
+          <Property Name="Create" Type="bit" Nullable="false" />
+          <Property Name="Upload" Type="bit" Nullable="false" />
+          <Property Name="MoveOrCopyInto" Type="bit" Nullable="false" />
+          <Property Name="IsFolder" Type="bit" />
+        </EntityType>
+        <EntityType Name="FileDocumentPermissionsOnlyView">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentId_PK" Type="int" Nullable="false" />
+          <Property Name="FileDocumentId_PK" Type="int" Nullable="false" />
+          <Property Name="Rename" Type="bit" Nullable="false" />
+          <Property Name="Move" Type="bit" Nullable="false" />
+          <Property Name="Copy" Type="bit" Nullable="false" />
+          <Property Name="Delete" Type="bit" Nullable="false" />
+          <Property Name="Download" Type="bit" Nullable="false" />
+          <Property Name="Create" Type="bit" Nullable="false" />
+          <Property Name="Upload" Type="bit" Nullable="false" />
+          <Property Name="MoveOrCopyInto" Type="bit" Nullable="false" />
+          <Property Name="IsFolder" Type="bit" />
+        </EntityType>
+        <EntityType Name="FindAllAccountDomain">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" />
+          <Property Name="GiveName" Type="nvarchar" MaxLength="250" />
+          <Property Name="SurName" Type="nvarchar" MaxLength="250" />
+          <Property Name="DisplayName" Type="nvarchar" MaxLength="250" />
+          <Property Name="SamAccountName" Type="nvarchar" MaxLength="250" />
+          <Property Name="UserPrincipalName" Type="nvarchar" MaxLength="250" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="250" />
+          <Property Name="OU1" Type="nvarchar" MaxLength="250" />
+          <Property Name="DistinguishedName" Type="nvarchar" MaxLength="250" />
+          <Property Name="Descriptions" Type="nvarchar" MaxLength="250" />
+          <Property Name="Enabled" Type="bit" />
+          <Property Name="StructuralObjectClasee" Type="nvarchar" MaxLength="50" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="250" />
+          <Property Name="Sid" Type="nvarchar" MaxLength="250" />
+          <Property Name="ContextType" Type="nvarchar" MaxLength="250" />
+          <Property Name="SmartcardLogonRequired" Type="bit" />
+          <Property Name="PasswordNeverExpires" Type="bit" />
+          <Property Name="PasswordNotRequired" Type="bit" />
+          <Property Name="UserCannotChangePassword" Type="bit" />
+          <Property Name="LastBadPasswordAttempt" Type="datetime" />
+          <Property Name="LastLogon" Type="datetime" />
+          <Property Name="LastPasswordSet" Type="datetime" />
+          <Property Name="BadLogonCount" Type="int" />
+          <Property Name="AccountExpirationDate" Type="datetime" />
+          <Property Name="DelegationPermitted" Type="bit" />
+        </EntityType>
+        <EntityType Name="ReplaceType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Desc" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedSource" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Fullname" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="Mobile" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedSource" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="UserDepartment">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="DepartmentId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserPermission">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="128" />
+          <Property Name="ObjectID" Type="int" Nullable="false" />
+          <Property Name="ObjectName" Type="nvarchar" MaxLength="300" />
+          <Property Name="ObjectTypeCode" Type="varchar" MaxLength="50" />
+          <Property Name="ObjectPath" Type="varchar(max)" />
+          <Property Name="PermissionCode" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="UserType" Type="int" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SSIDMSModelStoreContainer">
+          <EntitySet Name="AgencyType" EntityType="Self.AgencyType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Definition" EntityType="Self.Definition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DepartmentPermission" EntityType="Self.DepartmentPermission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dispatch" EntityType="Self.Dispatch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DispatchAgency" EntityType="Self.DispatchAgency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DMS_Transaction" EntityType="Self.DMS_Transaction" Schema="dbo" Table="DMS.Transaction" store:Type="Tables" />
+          <EntitySet Name="DocumentReplaced" EntityType="Self.DocumentReplaced" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentType" EntityType="Self.DocumentType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FileDocument" EntityType="Self.FileDocument" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FileDocumentPermissions" EntityType="Self.FileDocumentPermissions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FileDocumentPermissionsOnlyView" EntityType="Self.FileDocumentPermissionsOnlyView" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FindAllAccountDomain" EntityType="Self.FindAllAccountDomain" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReplaceType" EntityType="Self.ReplaceType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserDepartment" EntityType="Self.UserDepartment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserPermission" EntityType="Self.UserPermission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SSI.DMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AgencyType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="400" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FK_DocumentTypeID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedSource" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedByUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedByUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+          <Property Name="DepartmentName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserType" Type="Int32" />
+          <Property Name="CreatedSource" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedByUser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateByUser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="Definition">
+          <Key>
+            <PropertyRef Name="DefineID" />
+          </Key>
+          <Property Name="DefineID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="Int32" />
+          <Property Name="DefineType" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="RoleID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedByUser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedByUser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DepartmentPermission">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+          <Property Name="DepartmentName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ObjectID" Type="Int32" Nullable="false" />
+          <Property Name="ObjectName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="ObjectTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ObjectPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PermissionCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Dispatch">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_FileDocumentID" Type="Int32" />
+          <Property Name="ReceiveDate" Type="DateTime" Precision="3" />
+          <Property Name="ToAgency" Type="Int32" />
+          <Property Name="AnswerAgency" Type="Int32" />
+          <Property Name="AnswerDate" Type="DateTime" Precision="3" />
+          <Property Name="Reason" Type="Int32" />
+          <Property Name="ReasonDiff" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="SSISigner" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AnswerForDispatchID" Type="Int32" />
+          <Property Name="ReceiveAgency" Type="Int32" />
+          <Property Name="SendDate" Type="DateTime" Precision="3" />
+          <Property Name="SendMethod" Type="Int32" />
+          <Property Name="ReceiveAgencyDiff" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DispatchAgency">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_FileDocumentID" Type="Int32" Nullable="false" />
+          <Property Name="Agency" Type="Int32" />
+          <Property Name="Type" Type="Int32" />
+        </EntityType>
+        <EntityType Name="DMS_Transaction">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ObjectId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ObjectName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ObjectType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Action" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LocalIp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserIp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DocumentReplaced">
+          <Key>
+            <PropertyRef Name="ReplacedByID" />
+            <PropertyRef Name="ReplacedID" />
+            <PropertyRef Name="ReplaceType" />
+          </Key>
+          <Property Name="ReplacedByID" Type="Int32" Nullable="false" />
+          <Property Name="ReplacedID" Type="Int32" Nullable="false" />
+          <Property Name="ReplaceType" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DocumentType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="400" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ParentID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FileDocument">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Extension" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MimeType" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FileData" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="FileSize" Type="Int32" Nullable="false" />
+          <Property Name="Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ParentID" Type="Int32" />
+          <Property Name="IsFolder" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsPublic" Type="Boolean" Nullable="false" />
+          <Property Name="IsReplace" Type="Boolean" Nullable="false" />
+          <Property Name="IsDispatch" Type="Boolean" Nullable="false" />
+          <Property Name="Department" Type="Int32" Nullable="false" />
+          <Property Name="PromulgatedDate" Type="DateTime" Precision="0" />
+          <Property Name="DocumentTypeCategory" Type="Int32" />
+          <Property Name="DocumentTypeCategoryDiff" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DocumentType" Type="Int32" />
+          <Property Name="DocumentTypeDiff" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="AgencyType" Type="Int32" />
+          <Property Name="AgencyTypeDiff" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="EffectiveFrom" Type="DateTime" Precision="0" />
+          <Property Name="EffectiveTo" Type="DateTime" Precision="0" />
+          <Property Name="CreatedByUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedByUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="LastWriteTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="FileDocumentPermission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentId_PK" Type="Int32" Nullable="false" />
+          <Property Name="FileDocumentId_PK" Type="Int32" Nullable="false" />
+          <Property Name="Rename" Type="Boolean" Nullable="false" />
+          <Property Name="Move" Type="Boolean" Nullable="false" />
+          <Property Name="Copy" Type="Boolean" Nullable="false" />
+          <Property Name="Delete" Type="Boolean" Nullable="false" />
+          <Property Name="Download" Type="Boolean" Nullable="false" />
+          <Property Name="Create" Type="Boolean" Nullable="false" />
+          <Property Name="Upload" Type="Boolean" Nullable="false" />
+          <Property Name="MoveOrCopyInto" Type="Boolean" Nullable="false" />
+          <Property Name="IsFolder" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="FileDocumentPermissionsOnlyView">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentId_PK" Type="Int32" Nullable="false" />
+          <Property Name="FileDocumentId_PK" Type="Int32" Nullable="false" />
+          <Property Name="Rename" Type="Boolean" Nullable="false" />
+          <Property Name="Move" Type="Boolean" Nullable="false" />
+          <Property Name="Copy" Type="Boolean" Nullable="false" />
+          <Property Name="Delete" Type="Boolean" Nullable="false" />
+          <Property Name="Download" Type="Boolean" Nullable="false" />
+          <Property Name="Create" Type="Boolean" Nullable="false" />
+          <Property Name="Upload" Type="Boolean" Nullable="false" />
+          <Property Name="MoveOrCopyInto" Type="Boolean" Nullable="false" />
+          <Property Name="IsFolder" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="FindAllAccountDomain">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="Int32" />
+          <Property Name="GiveName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="SurName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="SamAccountName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="UserPrincipalName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="OU1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DistinguishedName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Descriptions" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Enabled" Type="Boolean" />
+          <Property Name="StructuralObjectClasee" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Guid" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Sid" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ContextType" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="SmartcardLogonRequired" Type="Boolean" />
+          <Property Name="PasswordNeverExpires" Type="Boolean" />
+          <Property Name="PasswordNotRequired" Type="Boolean" />
+          <Property Name="UserCannotChangePassword" Type="Boolean" />
+          <Property Name="LastBadPasswordAttempt" Type="DateTime" Precision="3" />
+          <Property Name="LastLogon" Type="DateTime" Precision="3" />
+          <Property Name="LastPasswordSet" Type="DateTime" Precision="3" />
+          <Property Name="BadLogonCount" Type="Int32" />
+          <Property Name="AccountExpirationDate" Type="DateTime" Precision="3" />
+          <Property Name="DelegationPermitted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="ReplaceType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Desc" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedSource" Type="Int32" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fullname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedSource" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Int32" />
+        </EntityType>
+        <EntityType Name="UserDepartment">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserPermission">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ObjectID" Type="Int32" Nullable="false" />
+          <Property Name="ObjectName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="ObjectTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ObjectPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PermissionCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="UserType" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AgencyTypes" EntityType="Self.AgencyType" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="Definitions" EntityType="Self.Definition" />
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="DepartmentPermissions" EntityType="Self.DepartmentPermission" />
+          <EntitySet Name="Dispatches" EntityType="Self.Dispatch" />
+          <EntitySet Name="DispatchAgencies" EntityType="Self.DispatchAgency" />
+          <EntitySet Name="DMS_Transaction" EntityType="Self.DMS_Transaction" />
+          <EntitySet Name="DocumentReplaceds" EntityType="Self.DocumentReplaced" />
+          <EntitySet Name="DocumentTypes" EntityType="Self.DocumentType" />
+          <EntitySet Name="FileDocuments" EntityType="Self.FileDocument" />
+          <EntitySet Name="FileDocumentPermissions" EntityType="Self.FileDocumentPermission" />
+          <EntitySet Name="FileDocumentPermissionsOnlyViews" EntityType="Self.FileDocumentPermissionsOnlyView" />
+          <EntitySet Name="FindAllAccountDomains" EntityType="Self.FindAllAccountDomain" />
+          <EntitySet Name="ReplaceTypes" EntityType="Self.ReplaceType" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UserDepartments" EntityType="Self.UserDepartment" />
+          <EntitySet Name="UserPermissions" EntityType="Self.UserPermission" />
+          <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SSIDMSModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="AgencyTypes">
+            <EntityTypeMapping TypeName="SSI.DMSModel.AgencyType">
+              <MappingFragment StoreEntitySet="AgencyType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FK_DocumentTypeID" ColumnName="FK_DocumentTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="SSI.DMSModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreatedSource" ColumnName="CreatedSource" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedByUser" ColumnName="CreatedByUser" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedByUser" ColumnName="UpdatedByUser" />
+                <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="SSI.DMSModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="SSI.DMSModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="SSI.DMSModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="CreatedSource" ColumnName="CreatedSource" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedByUser" ColumnName="CreatedByUser" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdateByUser" ColumnName="UpdateByUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Definitions">
+            <EntityTypeMapping TypeName="SSI.DMSModel.Definition">
+              <MappingFragment StoreEntitySet="Definition">
+                <ScalarProperty Name="DefineID" ColumnName="DefineID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="DefineType" ColumnName="DefineType" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="SSI.DMSModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedByUser" ColumnName="CreatedByUser" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedByUser" ColumnName="UpdatedByUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DepartmentPermissions">
+            <EntityTypeMapping TypeName="SSI.DMSModel.DepartmentPermission">
+              <MappingFragment StoreEntitySet="DepartmentPermission">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+                <ScalarProperty Name="ObjectName" ColumnName="ObjectName" />
+                <ScalarProperty Name="ObjectTypeCode" ColumnName="ObjectTypeCode" />
+                <ScalarProperty Name="ObjectPath" ColumnName="ObjectPath" />
+                <ScalarProperty Name="PermissionCode" ColumnName="PermissionCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dispatches">
+            <EntityTypeMapping TypeName="SSI.DMSModel.Dispatch">
+              <MappingFragment StoreEntitySet="Dispatch">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FK_FileDocumentID" ColumnName="FK_FileDocumentID" />
+                <ScalarProperty Name="ReceiveDate" ColumnName="ReceiveDate" />
+                <ScalarProperty Name="ToAgency" ColumnName="ToAgency" />
+                <ScalarProperty Name="AnswerAgency" ColumnName="AnswerAgency" />
+                <ScalarProperty Name="AnswerDate" ColumnName="AnswerDate" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="ReasonDiff" ColumnName="ReasonDiff" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="SSISigner" ColumnName="SSISigner" />
+                <ScalarProperty Name="AnswerForDispatchID" ColumnName="AnswerForDispatchID" />
+                <ScalarProperty Name="ReceiveAgency" ColumnName="ReceiveAgency" />
+                <ScalarProperty Name="SendDate" ColumnName="SendDate" />
+                <ScalarProperty Name="SendMethod" ColumnName="SendMethod" />
+                <ScalarProperty Name="ReceiveAgencyDiff" ColumnName="ReceiveAgencyDiff" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DispatchAgencies">
+            <EntityTypeMapping TypeName="SSI.DMSModel.DispatchAgency">
+              <MappingFragment StoreEntitySet="DispatchAgency">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FK_FileDocumentID" ColumnName="FK_FileDocumentID" />
+                <ScalarProperty Name="Agency" ColumnName="Agency" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DMS_Transaction">
+            <EntityTypeMapping TypeName="SSI.DMSModel.DMS_Transaction">
+              <MappingFragment StoreEntitySet="DMS_Transaction">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="ObjectName" ColumnName="ObjectName" />
+                <ScalarProperty Name="ObjectType" ColumnName="ObjectType" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="LocalIp" ColumnName="LocalIp" />
+                <ScalarProperty Name="UserIp" ColumnName="UserIp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentReplaceds">
+            <EntityTypeMapping TypeName="SSI.DMSModel.DocumentReplaced">
+              <MappingFragment StoreEntitySet="DocumentReplaced">
+                <ScalarProperty Name="ReplacedByID" ColumnName="ReplacedByID" />
+                <ScalarProperty Name="ReplacedID" ColumnName="ReplacedID" />
+                <ScalarProperty Name="ReplaceType" ColumnName="ReplaceType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentTypes">
+            <EntityTypeMapping TypeName="SSI.DMSModel.DocumentType">
+              <MappingFragment StoreEntitySet="DocumentType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FileDocuments">
+            <EntityTypeMapping TypeName="SSI.DMSModel.FileDocument">
+              <MappingFragment StoreEntitySet="FileDocument">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FileNo" ColumnName="FileNo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Extension" ColumnName="Extension" />
+                <ScalarProperty Name="MimeType" ColumnName="MimeType" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="FileData" ColumnName="FileData" />
+                <ScalarProperty Name="FileSize" ColumnName="FileSize" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="IsFolder" ColumnName="IsFolder" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsPublic" ColumnName="IsPublic" />
+                <ScalarProperty Name="IsReplace" ColumnName="IsReplace" />
+                <ScalarProperty Name="IsDispatch" ColumnName="IsDispatch" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="PromulgatedDate" ColumnName="PromulgatedDate" />
+                <ScalarProperty Name="DocumentTypeCategory" ColumnName="DocumentTypeCategory" />
+                <ScalarProperty Name="DocumentTypeCategoryDiff" ColumnName="DocumentTypeCategoryDiff" />
+                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+                <ScalarProperty Name="DocumentTypeDiff" ColumnName="DocumentTypeDiff" />
+                <ScalarProperty Name="AgencyType" ColumnName="AgencyType" />
+                <ScalarProperty Name="AgencyTypeDiff" ColumnName="AgencyTypeDiff" />
+                <ScalarProperty Name="EffectiveFrom" ColumnName="EffectiveFrom" />
+                <ScalarProperty Name="EffectiveTo" ColumnName="EffectiveTo" />
+                <ScalarProperty Name="CreatedByUser" ColumnName="CreatedByUser" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedByUser" ColumnName="UpdatedByUser" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="LastWriteTime" ColumnName="LastWriteTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FileDocumentPermissions">
+            <EntityTypeMapping TypeName="SSI.DMSModel.FileDocumentPermission">
+              <MappingFragment StoreEntitySet="FileDocumentPermissions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DepartmentId_PK" ColumnName="DepartmentId_PK" />
+                <ScalarProperty Name="FileDocumentId_PK" ColumnName="FileDocumentId_PK" />
+                <ScalarProperty Name="Rename" ColumnName="Rename" />
+                <ScalarProperty Name="Move" ColumnName="Move" />
+                <ScalarProperty Name="Copy" ColumnName="Copy" />
+                <ScalarProperty Name="Delete" ColumnName="Delete" />
+                <ScalarProperty Name="Download" ColumnName="Download" />
+                <ScalarProperty Name="Create" ColumnName="Create" />
+                <ScalarProperty Name="Upload" ColumnName="Upload" />
+                <ScalarProperty Name="MoveOrCopyInto" ColumnName="MoveOrCopyInto" />
+                <ScalarProperty Name="IsFolder" ColumnName="IsFolder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FileDocumentPermissionsOnlyViews">
+            <EntityTypeMapping TypeName="SSI.DMSModel.FileDocumentPermissionsOnlyView">
+              <MappingFragment StoreEntitySet="FileDocumentPermissionsOnlyView">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DepartmentId_PK" ColumnName="DepartmentId_PK" />
+                <ScalarProperty Name="FileDocumentId_PK" ColumnName="FileDocumentId_PK" />
+                <ScalarProperty Name="Rename" ColumnName="Rename" />
+                <ScalarProperty Name="Move" ColumnName="Move" />
+                <ScalarProperty Name="Copy" ColumnName="Copy" />
+                <ScalarProperty Name="Delete" ColumnName="Delete" />
+                <ScalarProperty Name="Download" ColumnName="Download" />
+                <ScalarProperty Name="Create" ColumnName="Create" />
+                <ScalarProperty Name="Upload" ColumnName="Upload" />
+                <ScalarProperty Name="MoveOrCopyInto" ColumnName="MoveOrCopyInto" />
+                <ScalarProperty Name="IsFolder" ColumnName="IsFolder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FindAllAccountDomains">
+            <EntityTypeMapping TypeName="SSI.DMSModel.FindAllAccountDomain">
+              <MappingFragment StoreEntitySet="FindAllAccountDomain">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="GiveName" ColumnName="GiveName" />
+                <ScalarProperty Name="SurName" ColumnName="SurName" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="SamAccountName" ColumnName="SamAccountName" />
+                <ScalarProperty Name="UserPrincipalName" ColumnName="UserPrincipalName" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="OU1" ColumnName="OU1" />
+                <ScalarProperty Name="DistinguishedName" ColumnName="DistinguishedName" />
+                <ScalarProperty Name="Descriptions" ColumnName="Descriptions" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="StructuralObjectClasee" ColumnName="StructuralObjectClasee" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+                <ScalarProperty Name="Sid" ColumnName="Sid" />
+                <ScalarProperty Name="ContextType" ColumnName="ContextType" />
+                <ScalarProperty Name="SmartcardLogonRequired" ColumnName="SmartcardLogonRequired" />
+                <ScalarProperty Name="PasswordNeverExpires" ColumnName="PasswordNeverExpires" />
+                <ScalarProperty Name="PasswordNotRequired" ColumnName="PasswordNotRequired" />
+                <ScalarProperty Name="UserCannotChangePassword" ColumnName="UserCannotChangePassword" />
+                <ScalarProperty Name="LastBadPasswordAttempt" ColumnName="LastBadPasswordAttempt" />
+                <ScalarProperty Name="LastLogon" ColumnName="LastLogon" />
+                <ScalarProperty Name="LastPasswordSet" ColumnName="LastPasswordSet" />
+                <ScalarProperty Name="BadLogonCount" ColumnName="BadLogonCount" />
+                <ScalarProperty Name="AccountExpirationDate" ColumnName="AccountExpirationDate" />
+                <ScalarProperty Name="DelegationPermitted" ColumnName="DelegationPermitted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReplaceTypes">
+            <EntityTypeMapping TypeName="SSI.DMSModel.ReplaceType">
+              <MappingFragment StoreEntitySet="ReplaceType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="SSI.DMSModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedSource" ColumnName="CreatedSource" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SSI.DMSModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="SSI.DMSModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="CreatedSource" ColumnName="CreatedSource" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserDepartments">
+            <EntityTypeMapping TypeName="SSI.DMSModel.UserDepartment">
+              <MappingFragment StoreEntitySet="UserDepartment">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserPermissions">
+            <EntityTypeMapping TypeName="SSI.DMSModel.UserPermission">
+              <MappingFragment StoreEntitySet="UserPermission">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+                <ScalarProperty Name="ObjectName" ColumnName="ObjectName" />
+                <ScalarProperty Name="ObjectTypeCode" ColumnName="ObjectTypeCode" />
+                <ScalarProperty Name="ObjectPath" ColumnName="ObjectPath" />
+                <ScalarProperty Name="PermissionCode" ColumnName="PermissionCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRoles">
+            <EntityTypeMapping TypeName="SSI.DMSModel.UserRole">
+              <MappingFragment StoreEntitySet="UserRole">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="SSI.DMSModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

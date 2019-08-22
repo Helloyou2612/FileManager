@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{313B82A4-5292-4727-84E5-AE6E47C407D3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FileManager.Dal</RootNamespace>
+    <AssemblyName>FileManager.Dal</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="EDM\AgencyType.cs">
+      <DependentUpon>FileSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDM\AspNetRole.cs">
+      <DependentUpon>FileSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDM\AspNetUser.cs">
+      <DependentUpon>FileSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDM\AspNetUserClaim.cs">
+      <DependentUpon>FileSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDM\AspNetUserLogin.cs">
+      <DependentUpon>FileSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDM\Definition.cs">
+      <DependentUpon>FileSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDM\Department.cs">
+      <DependentUpon>FileSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDM\DepartmentPermission.cs">
+      <DependentUpon>FileSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDM\Dispatch.cs">
+      <DependentUpon>FileSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDM\DispatchAgency.cs">
+      <DependentUpon>FileSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDM\DMS_Transaction.cs">
+      <DependentUpon>FileSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDM\DocumentReplaced.cs">
+      <DependentUpon>FileSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDM\DocumentType.cs">
+      <DependentUpon>FileSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDM\FileDocument.cs">
+      <DependentUpon>FileSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDM\FileDocumentPermission.cs">
+      <DependentUpon>FileSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDM\FileDocumentPermissionsOnlyView.cs">
+      <DependentUpon>FileSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDM\FileSystemModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FileSystemModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDM\FileSystemModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FileSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDM\FileSystemModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FileSystemModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EDM\FindAllAccountDomain.cs">
+      <DependentUpon>FileSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDM\ReplaceType.cs">
+      <DependentUpon>FileSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDM\Role.cs">
+      <DependentUpon>FileSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDM\sysdiagram.cs">
+      <DependentUpon>FileSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDM\User.cs">
+      <DependentUpon>FileSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDM\UserDepartment.cs">
+      <DependentUpon>FileSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDM\UserPermission.cs">
+      <DependentUpon>FileSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDM\UserRole.cs">
+      <DependentUpon>FileSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="EDM\FileSystemModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FileSystemModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="EDM\FileSystemModel.edmx.diagram">
+      <DependentUpon>FileSystemModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EDM\FileSystemModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FileSystemModel.Context.cs</LastGenOutput>
+      <DependentUpon>FileSystemModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="EDM\FileSystemModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FileSystemModel.edmx</DependentUpon>
+      <LastGenOutput>FileSystemModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
