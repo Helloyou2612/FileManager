@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using FileManager.Controllers;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -58,7 +59,7 @@ namespace FileManager
             }
             // Avoid IIS7 getting in the middle
             Response.TrySkipIisCustomErrors = true;
-            IController errorsController = new ErrorController();
+            IController errorsController = new ErrorPageController();
             HttpContextWrapper wrapper = new HttpContextWrapper(Context);
             var rc = new RequestContext(wrapper, routeData);
             errorsController.Execute(rc);
